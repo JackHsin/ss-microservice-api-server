@@ -1,0 +1,102 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Account {
+  id: Int!
+  role: String!
+  username: String!
+}
+
+type AccountId {
+  id: Int!
+}
+
+input AssignReviewInput {
+  id: Int!
+  reviewerAccountIds: [Int!]!
+}
+
+input CreateAccountInput {
+  id: Int
+  password: String!
+  role: String!
+  username: String!
+}
+
+input CreateReviewInput {
+  description: String!
+  expiredAt: DateTime
+  id: Int
+  name: String!
+  reviewerAccountIds: [Int!]!
+  status: String = "REVIEWING"
+  subjectAccountId: Int!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Feedback {
+  feedback: String
+  reviewId: Int!
+  reviewerAccountId: Int!
+}
+
+type Mutation {
+  assignEmployeesToReview(assignReviewInput: AssignReviewInput!): Review!
+  createAccount(createAccountInput: CreateAccountInput!): Account!
+  createReview(createReviewInput: CreateReviewInput!): Review!
+  removeAccount(id: Int!): AccountId!
+  removeReview(id: Int!): Review!
+  submit(submitFeedbackInput: SubmitFeedbackInput!): Feedback!
+  updateAccount(updateAccountInput: UpdateAccountInput!): Account!
+  updateReview(updateReviewInput: UpdateReviewInput!): Review!
+}
+
+type Query {
+  findAll: [Account!]!
+  findAllNeedToFeedbackReviews: [Review!]!
+  findAllReviews: [Review!]!
+  findAllReviews_testRealGraphql: [Review!]!
+  findByIds(ids: [Float!]!): [Account!]!
+  findOne: Account!
+  findOneByUsername(username: String!): Account!
+  findOneReviewById(id: Int!): Review!
+}
+
+type Review {
+  accounts: Account!
+  description: String!
+  expiredAt: DateTime
+  feedbacks: [Feedback!]
+  id: Int!
+  name: String!
+  status: String!
+  subjectAccountId: Int!
+}
+
+input SubmitFeedbackInput {
+  feedback: String!
+  reviewId: Int!
+  reviewerAccountId: Int!
+}
+
+input UpdateAccountInput {
+  id: Int!
+  password: String
+  role: String
+  username: String
+}
+
+input UpdateReviewInput {
+  description: String
+  expiredAt: DateTime
+  id: Int!
+  name: String
+  reviewerAccountIds: [String!]
+  status: String
+  subjectAccountId: Int
+}
