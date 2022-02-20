@@ -14,14 +14,14 @@ import { CreateReviewInput } from './dto/create-review.input';
 import { UpdateReviewInput } from './dto/update-review.input';
 import { AssignReviewInput } from './dto/assign-review.input';
 import { UseGuards } from '@nestjs/common';
-import { RolesGuard } from 'src/account/guard/roles.guard';
-import { RoleTypeEnum } from 'src/account/enum/account.enum';
-import { Roles } from 'src/common/decorators/roles.decorator';
-import { GqlJwtAuthGuard } from 'src/auth/jwt/graphql-jwt-auth.guard';
+import { RolesGuard } from '../account/guard/roles.guard';
+import { RoleTypeEnum } from '../account/enum/account.enum';
+import { Roles } from '../common/decorators/roles.decorator';
+import { GqlJwtAuthGuard } from '../auth/jwt/graphql-jwt-auth.guard';
 import { Feedback } from './entities/feedback.entity.gql';
 import { FeedbackService } from './services/feedback.service';
 import { Account } from '../account/entities/account.entity.gql';
-import { AccountService } from 'src/account/account.service';
+import { AccountService } from '../account/account.service';
 import DataLoader from 'dataloader';
 
 @UseGuards(RolesGuard)

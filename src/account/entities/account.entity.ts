@@ -11,4 +11,6 @@ export class AccountEntity extends BaseEntity {
   @Column({ type: 'varchar' }) password: string;
 
   @Column({ type: 'varchar' }) role: RoleTypeEnum;
+
+  @Column({ type: 'varchar' }) salt: string;
 }

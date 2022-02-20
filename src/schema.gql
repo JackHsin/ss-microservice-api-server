@@ -18,7 +18,6 @@ input AssignReviewInput {
 }
 
 input CreateAccountInput {
-  id: Int
   password: String!
   role: String!
   username: String!

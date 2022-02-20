@@ -1,6 +1,6 @@
 import * as DataLoader from 'dataloader';
-import { AccountService } from 'src/account/account.service';
-import { Account } from 'src/account/entities/account.entity.gql';
+import { AccountService } from '../../account/account.service';
+import { Account } from '../../account/entities/account.entity.gql';
 
 // Ref: https://dev.to/filipegeric/using-graphql-dataloaders-with-nestjs-2jo1
 export function reviewAccountsLoader(accountService: AccountService) {

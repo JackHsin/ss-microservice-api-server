@@ -8,16 +8,16 @@ import {
   Parent,
 } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
-import { RolesGuard } from 'src/account/guard/roles.guard';
-import { RoleTypeEnum } from 'src/account/enum/account.enum';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { RolesGuard } from '../account/guard/roles.guard';
+import { RoleTypeEnum } from '../account/enum/account.enum';
+import { Roles } from '../common/decorators/roles.decorator';
 import { Feedback } from './entities/feedback.entity.gql';
 import { FeedbackService } from './services/feedback.service';
 import { Review } from './entities/review.entity.gql';
 import { SubmitFeedbackInput } from './dto/submit-feedback.input';
-import { GqlJwtAuthGuard } from 'src/auth/jwt/graphql-jwt-auth.guard';
-import { CurrentUser } from 'src/common/decorators/graphql-current-user.decorator';
-import { CurrentUserDTO } from 'src/common/dto/current-user-decorator.dto';
+import { GqlJwtAuthGuard } from '../auth/jwt/graphql-jwt-auth.guard';
+import { CurrentUser } from '../common/decorators/graphql-current-user.decorator';
+import { CurrentUserDTO } from '../common/dto/current-user-decorator.dto';
 
 @UseGuards(RolesGuard)
 @Roles(RoleTypeEnum.ADMIN, RoleTypeEnum.EMPLOYEE)

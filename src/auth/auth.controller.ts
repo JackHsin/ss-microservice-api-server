@@ -9,6 +9,7 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req) {
+    // It's always req.user that @UseGuards(LocalAuthGuard) stored the payload
     return this.authService.login(req.user);
   }
 }

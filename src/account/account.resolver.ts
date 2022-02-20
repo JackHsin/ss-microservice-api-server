@@ -8,7 +8,7 @@ import { GqlJwtAuthGuard } from '../auth/jwt/graphql-jwt-auth.guard';
 import { RoleTypeEnum } from './enum/account.enum';
 import { Roles } from '../common/decorators/roles.decorator';
 import { RolesGuard } from './guard/roles.guard';
-import { CurrentUser } from 'src/common/decorators/graphql-current-user.decorator';
+import { CurrentUser } from '../common/decorators/graphql-current-user.decorator';
 import { CurrentUserDTO } from '../common/dto/current-user-decorator.dto';
 
 @UseGuards(RolesGuard)

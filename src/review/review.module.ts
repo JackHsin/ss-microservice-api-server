@@ -6,7 +6,7 @@ import { ReviewRepository } from './repositories/review.repository';
 import { FeedbackRepository } from './repositories/feedback.repository';
 import { FeedbackResolver } from './feedback.resolver';
 import { FeedbackService } from './services/feedback.service';
-import { AccountModule } from 'src/account/account.module';
+import { AccountModule } from '../account/account.module';
 
 @Module({
   imports: [
