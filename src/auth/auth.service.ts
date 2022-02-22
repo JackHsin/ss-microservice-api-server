@@ -6,6 +6,7 @@ import { AccountPO } from '../account/po/account.po';
 import { CreateAccountInput } from '../account/dto/create-account.input';
 import { SSHttpException } from '../common/exceptions/ss-http-exception';
 import { TASK_EXCEPTION } from '../account/constants/exception.constant';
+import { RoleTypeEnum } from '../account/enum/account.enum';
 
 const { INVALID_PASSWORD } = TASK_EXCEPTION;
 
@@ -23,6 +24,7 @@ export class AuthService implements OnModuleInit {
     const account = await this.accountService.findOneByUsername(username);
     const isMatch = await bcrypt.compare(password, account.password);
     if (isMatch) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = account;
       return result;
     } else {
@@ -67,29 +69,29 @@ export class AuthService implements OnModuleInit {
 
   // Init Users
   async onModuleInit() {
-    // try {
-    //   await this.registerAccount({
-    //     username: 'root',
-    //     password: 'root0000',
-    //     role: RoleTypeEnum.ADMIN,
-    //   });
-    //   await this.registerAccount({
-    //     username: 'Head_Judge',
-    //     password: 'CTSA_HJ001',
-    //     role: RoleTypeEnum.HEAD_JUDGE,
-    //   });
-    //   await this.registerAccount({
-    //     username: 'Priority_Judge',
-    //     password: 'CTSA_PJ001',
-    //     role: RoleTypeEnum.PRIORITY_JUDGE,
-    //   });
-    //   for (let i = 1; i < 6; i++) {
-    //     await this.registerAccount({
-    //       username: `Judge_${i}`,
-    //       password: `CTSA_J001${i}`,
-    //       role: RoleTypeEnum.JUDGE,
-    //     });
-    //   }
-    // } catch (e) {}
+    try {
+      await this.registerAccount({
+        username: 'root',
+        password: 'root0000',
+        role: RoleTypeEnum.ADMIN,
+      });
+      await this.registerAccount({
+        username: 'Head_Judge',
+        password: 'CTSA_HJ001',
+        role: RoleTypeEnum.HEAD_JUDGE,
+      });
+      await this.registerAccount({
+        username: 'Priority_Judge',
+        password: 'CTSA_PJ001',
+        role: RoleTypeEnum.PRIORITY_JUDGE,
+      });
+      for (let i = 1; i < 6; i++) {
+        await this.registerAccount({
+          username: `Judge_${i}`,
+          password: `CTSA_J001${i}`,
+          role: RoleTypeEnum.JUDGE,
+        });
+      }
+    } catch (e) {}
   }
 }

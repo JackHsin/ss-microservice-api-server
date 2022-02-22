@@ -12,11 +12,11 @@ import { AccountService } from './account/account.service';
 import { reviewAccountsLoader } from './review/dataLoader/accounts.loader';
 
 const {
-  MYSQL_DB_HOST,
-  MYSQL_DB_PORT,
-  MYSQL_ROOT_USER,
-  MYSQL_ROOT_PASSWORD,
-  MYSQL_DATABASE,
+  POSTGRES_DB_HOST,
+  POSTGRES_DB_PORT,
+  POSTGRES_USER,
+  POSTGRES_PASSWORD,
+  POSTGRES_DATABASE,
 } = process.env;
 
 @Module({
@@ -24,14 +24,13 @@ const {
     AccountModule,
     ReviewModule,
     TypeOrmModule.forRoot({
-      timezone: 'Z',
       autoLoadEntities: true,
-      type: 'mysql',
-      host: MYSQL_DB_HOST,
-      port: parseInt(MYSQL_DB_PORT),
-      username: MYSQL_ROOT_USER,
-      password: MYSQL_ROOT_PASSWORD,
-      database: MYSQL_DATABASE,
+      type: 'postgres',
+      host: POSTGRES_DB_HOST,
+      port: parseInt(POSTGRES_DB_PORT),
+      username: POSTGRES_USER,
+      password: POSTGRES_PASSWORD,
+      database: POSTGRES_DATABASE,
       entities: [AccountEntity],
       logging: 'all',
     }),

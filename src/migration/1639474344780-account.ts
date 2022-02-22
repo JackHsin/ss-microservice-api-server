@@ -1,10 +1,14 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 const table = 'accounts';
+const schema = 'app';
 export class Account1639474344780 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.createSchema(schema, true);
+
     await queryRunner.createTable(
       new Table({
+        schema,
         name: table,
         columns: [
           {
@@ -29,13 +33,13 @@ export class Account1639474344780 implements MigrationInterface {
           },
           {
             name: 'created_at',
-            type: 'datetime',
+            type: 'timestamp',
             default: 'CURRENT_TIMESTAMP',
           },
 
           {
             name: 'updated_at',
-            type: 'datetime',
+            type: 'timestamp',
             default: 'CURRENT_TIMESTAMP',
             onUpdate: 'CURRENT_TIMESTAMP',
           },

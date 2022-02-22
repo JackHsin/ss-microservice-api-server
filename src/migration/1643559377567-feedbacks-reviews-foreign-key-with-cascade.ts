@@ -1,14 +1,24 @@
-import { MigrationInterface, QueryRunner, TableForeignKey } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 const table = 'feedbacks';
+const schema = 'app';
 export class FeedbacksReviewsForeignKeyWithCascade1643559377567
   implements MigrationInterface
 {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createForeignKey(
-      table,
+      new Table({
+        schema,
+        name: table,
+      }),
       new TableForeignKey({
         columnNames: ['review_id'],
+        referencedSchema: schema,
         referencedTableName: 'reviews',
         referencedColumnNames: ['id'],
         onDelete: 'CASCADE',
@@ -18,9 +28,13 @@ export class FeedbacksReviewsForeignKeyWithCascade1643559377567
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey(
-      table,
+      new Table({
+        schema,
+        name: table,
+      }),
       new TableForeignKey({
         columnNames: ['review_id'],
+        referencedSchema: schema,
         referencedTableName: 'reviews',
         referencedColumnNames: ['id'],
         onDelete: 'CASCADE',

@@ -1,19 +1,19 @@
 const {
-  MYSQL_MAPPING_DB_HOST,
-  MYSQL_MAPPING_DB_PORT,
-  MYSQL_ROOT_USER,
-  MYSQL_ROOT_PASSWORD,
-  MYSQL_DATABASE,
+  POSTGRES_MAPPING_DB_HOST,
+  POSTGRES_MAPPING_DB_PORT,
+  POSTGRES_USER,
+  POSTGRES_PASSWORD,
+  POSTGRES_DATABASE,
 } = process.env;
 
 import { ConnectionOptions } from 'typeorm';
 const typeormConfig: ConnectionOptions = {
-  type: 'mysql',
-  host: MYSQL_MAPPING_DB_HOST,
-  port: parseInt(MYSQL_MAPPING_DB_PORT),
-  username: MYSQL_ROOT_USER,
-  password: MYSQL_ROOT_PASSWORD,
-  database: MYSQL_DATABASE,
+  type: 'postgres',
+  host: POSTGRES_MAPPING_DB_HOST,
+  port: parseInt(POSTGRES_MAPPING_DB_PORT),
+  username: POSTGRES_USER,
+  password: POSTGRES_PASSWORD,
+  database: POSTGRES_DATABASE,
   logging: true,
   migrations: ['src/migration/*{.ts,.js}'],
   cli: {
@@ -21,8 +21,8 @@ const typeormConfig: ConnectionOptions = {
   },
   migrationsTableName: 'migrations',
   synchronize: false,
-  charset: 'utf8mb4_unicode_ci',
-  timezone: 'Z',
+  // charset: 'utf8mb4_unicode_ci',
+  // timezone: 'Z',
 };
 
 module.exports = typeormConfig;

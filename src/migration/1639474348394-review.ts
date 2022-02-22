@@ -1,10 +1,13 @@
 import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm';
 
 const table = 'reviews';
+const schema = 'app';
 export class Review1639474348394 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.createSchema('app', true);
     await queryRunner.createTable(
       new Table({
+        schema,
         name: table,
         columns: [
           {
@@ -37,18 +40,18 @@ export class Review1639474348394 implements MigrationInterface {
 
           {
             name: 'expired_at',
-            type: 'datetime',
+            type: 'timestamp',
             isNullable: true,
           },
           {
             name: 'created_at',
-            type: 'datetime',
+            type: 'timestamp',
             default: 'CURRENT_TIMESTAMP',
           },
 
           {
             name: 'updated_at',
-            type: 'datetime',
+            type: 'timestamp',
             default: 'CURRENT_TIMESTAMP',
             onUpdate: 'CURRENT_TIMESTAMP',
           },
@@ -57,7 +60,10 @@ export class Review1639474348394 implements MigrationInterface {
     );
 
     await queryRunner.createIndex(
-      table,
+      new Table({
+        schema,
+        name: table,
+      }),
       new TableIndex({
         name: 'IDX_SUBJECT_ACCOUNT_ID_NAME',
         columnNames: ['subject_account_id', 'name'],
@@ -67,7 +73,18 @@ export class Review1639474348394 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropIndex(table, 'IDX_SUBJECT_ACCOUNT_ID_NAME');
-    await queryRunner.dropTable(table);
+    await queryRunner.dropIndex(
+      new Table({
+        schema,
+        name: table,
+      }),
+      'IDX_SUBJECT_ACCOUNT_ID_NAME',
+    );
+    await queryRunner.dropTable(
+      new Table({
+        schema,
+        name: table,
+      }),
+    );
   }
 }

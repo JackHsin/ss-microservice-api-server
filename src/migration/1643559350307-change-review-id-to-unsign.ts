@@ -1,10 +1,14 @@
-import { MigrationInterface, QueryRunner, TableColumn } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table, TableColumn } from 'typeorm';
 
 const table = 'reviews';
+const schema = 'app';
 export class ChangeReviewIdToUnsign1643559350307 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.changeColumn(
-      table,
+      new Table({
+        schema,
+        name: table,
+      }),
       new TableColumn({
         name: 'id',
         type: 'int',
@@ -25,7 +29,10 @@ export class ChangeReviewIdToUnsign1643559350307 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.changeColumn(
-      table,
+      new Table({
+        schema,
+        name: table,
+      }),
       new TableColumn({
         name: 'id',
         type: 'int',

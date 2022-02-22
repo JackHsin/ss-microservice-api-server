@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
 import { RoleTypeEnum } from '../enum/account.enum';
 
-@Entity('accounts')
+@Entity('accounts', { schema: 'app' })
 export class AccountEntity extends BaseEntity {
   @PrimaryGeneratedColumn('increment') id: number;
 

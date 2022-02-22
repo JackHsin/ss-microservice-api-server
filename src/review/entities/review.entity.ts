@@ -9,7 +9,7 @@ import { BaseEntity } from '../../common/entities/base.entity';
 import { ReviewStatusEnum } from '../enum/review.enum';
 import { FeedbackEntity } from './feedback.entity';
 
-@Entity('reviews')
+@Entity('reviews', { schema: 'app' })
 @Index('IDX_SUBJECT_ACCOUNT_ID_NAME', ['subjectAccountId', 'name'], {
   unique: true,
 })
@@ -24,7 +24,7 @@ export class ReviewEntity extends BaseEntity {
 
   @Column({ type: 'varchar' }) status: ReviewStatusEnum;
 
-  @Column({ name: 'expired_at', nullable: true, type: 'datetime' })
+  @Column({ name: 'expired_at', nullable: true, type: 'timestamp' })
   expiredAt?: Date;
 
   @OneToMany(() => FeedbackEntity, (feedbacks) => feedbacks.review, {

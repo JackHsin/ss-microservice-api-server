@@ -9,7 +9,7 @@ import {
 import { BaseEntity } from '../../common/entities/base.entity';
 import { ReviewEntity } from './review.entity';
 
-@Entity('feedbacks')
+@Entity('feedbacks', { schema: 'app' })
 @Index(
   'IDX_FEEDBACK_REVIEW_ID_REVIEWER_ACCOUNT_ID',
   ['reviewId', 'reviewerAccountId'],

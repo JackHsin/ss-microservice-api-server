@@ -1,10 +1,14 @@
-import { MigrationInterface, QueryRunner, TableColumn } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table, TableColumn } from 'typeorm';
 
 const table = 'accounts';
+const schema = 'app';
 export class AddSaltToAccountTable1645345670278 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
-      table,
+      new Table({
+        schema,
+        name: table,
+      }),
       new TableColumn({
         name: 'salt',
         type: 'varchar',
@@ -14,7 +18,10 @@ export class AddSaltToAccountTable1645345670278 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropColumn(
-      table,
+      new Table({
+        schema,
+        name: table,
+      }),
       new TableColumn({
         name: 'salt',
         type: 'varchar',
