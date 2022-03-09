@@ -1,7 +1,7 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Account } from '../../account/entities/account.entity.gql';
 import { ReviewStatusEnum } from '../enum/review.enum';
-import { Feedback } from './feedback.entity.gql';
+import { Feedback } from './feedback.model.gql';
 
 @ObjectType()
 export class Review {
@@ -23,9 +23,9 @@ export class Review {
   @Field({ nullable: true })
   expiredAt?: Date;
 
-  @Field((type) => [Feedback], { nullable: true })
+  @Field(() => [Feedback], { nullable: true })
   feedbacks: Feedback[];
 
-  @Field((type) => Account)
+  @Field(() => Account)
   accounts: Account;
 }

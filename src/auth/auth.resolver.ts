@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { UserInfoDTO } from './dto/auth.dto';
 import { LoginInput } from './dto/update-review.input';
 import { LocalAuthGraphqlGuard } from './login/local-auth.guard';
-import { Token } from './models/auth.modal';
+import { Token } from './models/auth.model.gql';
 
 @Resolver(() => Token)
 export class AuthResolver {

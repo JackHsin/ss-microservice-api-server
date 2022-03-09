@@ -9,7 +9,7 @@ import {
   Context,
 } from '@nestjs/graphql';
 import { ReviewService } from './services/review.service';
-import { Review } from './entities/review.entity.gql';
+import { Review } from './models/review.model.gql';
 import { CreateReviewInput } from './dto/create-review.input';
 import { UpdateReviewInput } from './dto/update-review.input';
 import { AssignReviewInput } from './dto/assign-review.input';
@@ -18,7 +18,7 @@ import { RolesGuard } from '../account/guard/roles.guard';
 import { RoleTypeEnum } from '../account/enum/account.enum';
 import { Roles } from '../common/decorators/roles.decorator';
 import { GqlJwtAuthGuard } from '../auth/jwt/graphql-jwt-auth.guard';
-import { Feedback } from './entities/feedback.entity.gql';
+import { Feedback } from './models/feedback.model.gql';
 import { FeedbackService } from './services/feedback.service';
 import { Account } from '../account/entities/account.entity.gql';
 import { AccountService } from '../account/account.service';
@@ -63,6 +63,7 @@ export class ReviewResolver {
   }
 
   @ResolveField(() => Feedback)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async feedbacks(@Parent() review: Review, @Context() context: any) {
     // console.log(context.randomValue);
     // console.log('\x1b[32m', '\n--------------Debug----------------\n');
