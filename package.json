@@ -44,7 +44,6 @@
     "graphql": "^15.8.0",
     "helmet": "^5.0.2",
     "moment-timezone": "^0.5.34",
-    "mysql2": "^2.3.3",
     "passport": "^0.5.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
