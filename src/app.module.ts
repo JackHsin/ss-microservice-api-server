@@ -13,7 +13,7 @@ import { reviewAccountsLoader } from './review/dataLoader/accounts.loader';
 
 const {
   POSTGRES_DB_HOST,
-  POSTGRES_DB_PORT,
+  POSTGRES_MAPPING_DB_PORT,
   POSTGRES_USER,
   POSTGRES_PASSWORD,
   POSTGRES_DATABASE,
@@ -27,7 +27,7 @@ const {
       autoLoadEntities: true,
       type: 'postgres',
       host: POSTGRES_DB_HOST,
-      port: parseInt(POSTGRES_DB_PORT),
+      port: parseInt(POSTGRES_MAPPING_DB_PORT),
       username: POSTGRES_USER,
       password: POSTGRES_PASSWORD,
       database: POSTGRES_DATABASE,
