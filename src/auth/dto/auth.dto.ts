@@ -1,9 +1,13 @@
-import { IsString } from 'class-validator';
+import { Expose } from 'class-transformer';
+import { IsEnum, IsString } from 'class-validator';
+import { RoleTypeEnum } from '../../account/enum/account.enum';
 
-export class LoginDTO {
+export class UserInfoDTO {
   @IsString()
-  username: string;
+  @Expose()
+  id: string;
 
-  @IsString()
-  password: string;
+  @IsEnum(RoleTypeEnum)
+  @Expose()
+  role: RoleTypeEnum;
 }

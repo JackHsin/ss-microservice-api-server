@@ -44,7 +44,13 @@ type Feedback {
   reviewerAccountId: Int!
 }
 
+input LoginInput {
+  password: String!
+  username: String!
+}
+
 type Mutation {
+  Login(loginInput: LoginInput!): Token!
   assignEmployeesToReview(assignReviewInput: AssignReviewInput!): Review!
   createAccount(createAccountInput: CreateAccountInput!): Account!
   createReview(createReviewInput: CreateReviewInput!): Review!
@@ -81,6 +87,10 @@ input SubmitFeedbackInput {
   feedback: String!
   reviewId: Int!
   reviewerAccountId: Int!
+}
+
+type Token {
+  token: String!
 }
 
 input UpdateAccountInput {

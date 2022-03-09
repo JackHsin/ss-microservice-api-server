@@ -7,6 +7,7 @@ import { CreateAccountInput } from '../account/dto/create-account.input';
 import { SSHttpException } from '../common/exceptions/ss-http-exception';
 import { TASK_EXCEPTION } from '../account/constants/exception.constant';
 import { RoleTypeEnum } from '../account/enum/account.enum';
+import { UserInfoDTO } from './dto/auth.dto';
 
 const { INVALID_PASSWORD } = TASK_EXCEPTION;
 
@@ -32,14 +33,14 @@ export class AuthService implements OnModuleInit {
     }
   }
 
-  async login(account: AccountPO) {
+  async login(userInfo: UserInfoDTO) {
     const payload = {
       // username: account.username,
-      sub: account.id,
-      role: account.role,
+      sub: userInfo.id,
+      role: userInfo.role,
     };
     return {
-      accessToken: this.jwtService.sign(payload, { expiresIn: '2 days' }),
+      token: this.jwtService.sign(payload, { expiresIn: '2 days' }),
     };
   }
 
